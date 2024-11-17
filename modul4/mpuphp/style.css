@@ -1,0 +1,70 @@
+/* Reset margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    color: #2C3E50;
+    margin-bottom: 20px;
+}
+
+/* Table container */
+table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+/* Table header styling */
+th {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Table cell styling */
+td {
+    background-color: #ecf0f1;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Table row hover effect */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Add border to table */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+/* Add a small shadow around the table */
+table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+    th, td {
+        padding: 8px;
+    }
+}
