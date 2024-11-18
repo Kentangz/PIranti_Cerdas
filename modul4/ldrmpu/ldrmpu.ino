@@ -15,7 +15,7 @@ void setup() {
 
   // Kalibrasi giroskop MPU6050
   Serial.println("Kalibrasi sedang berjalan...");
-  mpu.calcGyroOffsets();  // Pastikan sensor tidak bergerak saat kalibrasi
+  mpu.calcGyroOffsets(true);  // Pastikan sensor tidak bergerak saat kalibrasi
   Serial.println("Kalibrasi selesai. Sensor siap!");
 }
 
@@ -40,19 +40,19 @@ void loop() {
   mpu.update();
 
   // Membaca sudut kemiringan dari MPU6050
-  float ax = mpu.getAngleX(); // Sudut kemiringan sumbu X
-  float ay = mpu.getAngleY(); // Sudut kemiringan sumbu Y
+  float ax = mpu.getGyroX(); // Sudut kemiringan sumbu X
+  float ay = mpu.getGyroY(); // Sudut kemiringan sumbu Y
 
   Serial.print("Angle X: ");
   Serial.println(ax);
   Serial.print("Angle Y: ");
   Serial.println(ay);
-
+  
   // Menentukan kondisi kemiringan berdasarkan sumbu X dan Y
   if (ax > 10) {
-    Serial.println("Sensor miring: Kiri");
-  } else if (ax < -10) {
     Serial.println("Sensor miring: Kanan");
+  } else if (ax < -10) {
+    Serial.println("Sensor miring: Kiri");
   } else if (ay > 10) {
     Serial.println("Sensor miring: Depan");
   } else if (ay < -10) {

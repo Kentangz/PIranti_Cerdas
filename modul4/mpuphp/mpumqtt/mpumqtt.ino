@@ -99,16 +99,19 @@ void loop() {
   float gyroY = mpu.getGyroY();
 
   // Tentukan gerakan berdasarkan nilai sumbu
-  String angka_sumbu = "stabil";
+  String angka_sumbu;
   if (gyroX > 10) {
-    angka_sumbu = "kiri";
-  } else if (gyroX < -10) {
     angka_sumbu = "kanan";
+  } else if (gyroX < -10) {
+    angka_sumbu = "kiri";
   } else if (gyroY > 10) {
     angka_sumbu = "depan";
   } else if (gyroY < -10) {
     angka_sumbu = "belakang";
   }
+    else{
+      angka_sumbu = "stabil";
+    }
 
   // Kirim data melalui MQTT (termasuk angka sumbu)
   String payload = String("{\"angka_sumbu\":\"") + angka_sumbu + 

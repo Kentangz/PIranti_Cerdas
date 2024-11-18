@@ -20,7 +20,7 @@ $result = $mysqli->query($query);
 if (!$result) {
     die("Query failed: " . $mysqli->error);
 }
-
+//hai-
 // Menyimpan hasil query dalam array
 $data = [];
 while ($row = $result->fetch_assoc()) {
