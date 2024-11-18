@@ -33,13 +33,17 @@ $mqtt->subscribe('esp32/mpu6050/data', function ($topic, $message) use ($pdo) {
     // Decode JSON data
     $data = json_decode($message, true);
     if ($data) {
-        $gyroX = $data['gyroX'];
-        $gyroY = $data['gyroY'];
-        $gyroZ = $data['gyroZ'];
+        $angka_sumbu = $data['angka_sumbu']; // Mendapatkan nilai angka_sumbu (kiri, kanan, depan, dll)
+        $gyroX = $data['gyroX']; // Mendapatkan nilai gyroX
+        $gyroY = $data['gyroY']; // Mendapatkan nilai gyroY
 
         // Insert data ke database
-        $stmt = $pdo->prepare("INSERT INTO mpu6050_data (gyro_x, gyro_y, gyro_z) VALUES (:gyroX, :gyroY, :gyroZ)");
-        $stmt->execute(['gyroX' => $gyroX, 'gyroY' => $gyroY, 'gyroZ' => $gyroZ]);
+        $stmt = $pdo->prepare("INSERT INTO mpu6050_data (angka_sumbu, gyro_x, gyro_y) VALUES (:angka_sumbu, :gyroX, :gyroY)");
+        $stmt->execute([
+            'angka_sumbu' => $angka_sumbu,
+            'gyroX' => $gyroX,
+            'gyroY' => $gyroY
+        ]);
         echo "Data inserted to database\n";
     }
 }, 0);

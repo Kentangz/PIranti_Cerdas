@@ -3,6 +3,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <WiFiClientSecure.h>
+
 // ---- Sensor & MQTT Configuration ----
 MPU6050 mpu(Wire);
 
@@ -76,7 +77,7 @@ void connectToMQTT() {
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Wire.begin();
   mpu.begin();
   mpu.calcGyroOffsets(true); // Kalibrasi sensor gyro
@@ -96,14 +97,25 @@ void loop() {
   mpu.update();
   float gyroX = mpu.getGyroX();
   float gyroY = mpu.getGyroY();
-  float gyroZ = mpu.getGyroZ();
 
-  // Kirim data melalui MQTT
-  String payload = String("{\"gyroX\":") + gyroX + 
-                   ",\"gyroY\":" + gyroY + 
-                   ",\"gyroZ\":" + gyroZ + "}";
+  // Tentukan gerakan berdasarkan nilai sumbu
+  String angka_sumbu = "stabil";
+  if (gyroX > 10) {
+    angka_sumbu = "kiri";
+  } else if (gyroX < -10) {
+    angka_sumbu = "kanan";
+  } else if (gyroY > 10) {
+    angka_sumbu = "depan";
+  } else if (gyroY < -10) {
+    angka_sumbu = "belakang";
+  }
+
+  // Kirim data melalui MQTT (termasuk angka sumbu)
+  String payload = String("{\"angka_sumbu\":\"") + angka_sumbu + 
+                   "\",\"gyroX\":" + gyroX +
+                   ",\"gyroY\":" + gyroY + "}";
   client.publish(mqttPublishTopic, payload.c_str());
   Serial.println("Data sent: " + payload);
 
-  delay(1000); // Interval pengiriman
+  delay(2000); // Interval pengiriman
 }

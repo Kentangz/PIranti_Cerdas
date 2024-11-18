@@ -27,6 +27,7 @@ table {
     margin: 0 auto;
     border-collapse: collapse;
     background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 /* Table header styling */
@@ -35,6 +36,7 @@ th {
     color: white;
     padding: 10px;
     text-align: left;
+    font-weight: bold;
 }
 
 /* Table cell styling */
