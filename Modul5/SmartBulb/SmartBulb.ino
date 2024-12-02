@@ -1,13 +1,13 @@
-#define BLYNK_TEMPLATE_ID "TMPL6xqGJTTbv"
-#define BLYNK_TEMPLATE_NAME "Bulb Bulb"
-#define BLYNK_AUTH_TOKEN "j-__pKZQ5HtZ4bBHtRto3I83DoBdjvQr"
+#define BLYNK_TEMPLATE_ID "hai"
+#define BLYNK_TEMPLATE_NAME "hai"
+#define BLYNK_AUTH_TOKEN "hai"
 #define BLYNK_PRINT Serial 
 #include <WiFi.h>
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp32.h>
 
-char ssid[] = "Y";  
-char pass[] = "pppppppp";
+char ssid[] = "hai";  
+char pass[] = "hai";
 
 const int ldrPin = 34;
 const int relayPin = 5;
